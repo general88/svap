@@ -42,7 +42,7 @@ const DocumentCard = ({
       />
       <Card
         hoverable
-        cover={<img alt="example" src="/public/document.png" />}
+        cover={<img alt="example" src="document.png" />}
         actions={[
           <div
             onClick={() => {
