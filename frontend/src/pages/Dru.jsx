@@ -15,7 +15,7 @@ const Dru = () => {
             <NavLink key={item.label} to={`/${item.value}`}>
               <Card
                 hoverable
-                cover={<img alt="example" src="./public/folder.png" />}
+                cover={<img alt="example" src="folder.png" />}
                 actions={[]}
               >
                 <Meta

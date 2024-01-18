@@ -7,7 +7,7 @@ const Welcome = () => {
       <HeroOverlay
         pageTitle={"SIGNAL VIEWING AND ARCHIVING PORTAL (SVAP)"}
         pageAbreviation={"SVAP"}
-        overlayURL={"./public/hero.jpg"}
+        overlayURL={"/hero.jpg"}
       />
     </>
   );
