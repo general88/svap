@@ -7,8 +7,8 @@ const { adminBasedMiddleware } = require("../middleware/adminBasedMiddleware");
 // route for creating a user
 router.post(
   "/register",
-  // authenticationMiddleware,
-  // adminBasedMiddleware,
+  authenticationMiddleware,
+  adminBasedMiddleware,
   createUser
 );
 
