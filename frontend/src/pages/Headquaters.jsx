@@ -29,11 +29,9 @@ const Headquaters = (item) => {
       <div>
         <Sider
           width={200}
-          style={
-            {
-              // background: colorBgContainer,
-            }
-          }
+          style={{
+            backgroundColor: "blue",
+          }}
         >
           <Menu
             mode="inline"
@@ -57,7 +55,7 @@ const Headquaters = (item) => {
               <NavLink key={item.label} to={`/${item.value}`}>
                 <Card
                   hoverable
-                  cover={<img alt="example" src="/public/document.png" />}
+                  cover={<img alt="example" src="/public/folder.png" />}
                   actions={[]}
                 >
                   <Meta

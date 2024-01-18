@@ -40,7 +40,7 @@ const Command = () => {
               navigate(
                 `/${e.domEvent.target.innerText
                   .split(" ")
-                  .join("")
+                  .join("-")
                   .replace(/&/, "-")}`
               )
             }
@@ -58,7 +58,7 @@ const Command = () => {
               <NavLink key={item.label} to={`/${item.value}`}>
                 <Card
                   hoverable
-                  cover={<img alt="example" src="/public/document.png" />}
+                  cover={<img alt="example" src="/public/folder.png" />}
                   actions={[]}
                 >
                   <Meta

@@ -15,16 +15,16 @@ const Dru = () => {
             <NavLink key={item.label} to={`/${item.value}`}>
               <Card
                 hoverable
-                cover={<img alt="example" src="/public/document.png" />}
+                cover={<img alt="example" src="/public/folder.png" />}
                 actions={[]}
               >
                 <Meta
                   title={item.label}
-                  description={
-                    <div>
-                      <p>HQ</p>
-                    </div>
-                  }
+                  // description={
+                  //   <div>
+                  //     <p>HQ</p>
+                  //   </div>
+                  // }
                 />
               </Card>
             </NavLink>
