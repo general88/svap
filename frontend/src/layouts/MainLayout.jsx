@@ -1,12 +1,15 @@
 import React from "react";
 import Navbar from "../components/Navbar";
 import { FooterSec } from "../components/FooterSec";
-import { Outlet } from "react-router";
+import { Outlet, useLocation } from "react-router";
 
 const MainLayout = () => {
+  const location = useLocation();
+
+  console.log(location);
   return (
     <>
-      <Navbar />
+      {!location.pathname.startsWith("/admin") && <Navbar />}
       <Outlet />
       <FooterSec />
     </>

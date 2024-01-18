@@ -10,9 +10,11 @@ import ProtectedLayout from "./layouts/ProtectedLayout";
 import Home from "./pages/Home";
 import UploadPanel from "./pages/uploadpage/UploadPanel";
 import ProtectedUploadRoute from "./layouts/ProtectedUploadRoute";
-import AdminPage from "./pages/AdminPage";
+
 import AdminProtectedRoute from "./layouts/AdminProtectedRoute";
-import DisplayAllDocuments from "./pages/DisplayAllDocuments";
+import UnitDocumentPage from "./pages/Units/UnitDocumentPage";
+import AdminLayout from "./pages/admin/AdminLayout";
+import CreateUser from "./pages/admin/CreateUser";
 
 function App() {
   return (
@@ -33,10 +35,12 @@ function App() {
 
           {/* protecting admin route */}
           <Route element={<AdminProtectedRoute />}>
-            <Route path="/admin" element={<AdminPage />} />
+            <Route path="/admin" element={<AdminLayout />}>
+              <Route path="create-user" element={<CreateUser />} />
+            </Route>
           </Route>
           {/* ******************* */}
-          <Route path="/:routename" element={<DisplayAllDocuments />} />
+          <Route path="/:routename" element={<UnitDocumentPage />} />
         </Route>
         {/* *********************** */}
         {/* ************************ */}

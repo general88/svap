@@ -8,14 +8,14 @@ const Navbar = () => {
   const { profile } = useSelector((state) => state.user);
   return (
     <nav
-      className="shadow-md px-2 py-5"
+      className="shadow-md px-2 py-5 w-full"
       style={
         {
           // backgroundColor: "#013678",
         }
       }
     >
-      <section className="max-w-6xl mx-auto  flex items-center justify-between">
+      <section className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between">
         <div className="flex gap-6 items-center text-xs lg:text-lg">
           <img
             src="https://airforce.mil.ng/assets/pages/img/pia.png"
@@ -24,10 +24,14 @@ const Navbar = () => {
           />
           <h1>NIGERIAN AIR FORCE</h1>
         </div>
-        <div className="space-x-5 font-black text-sm uppercase">
+        <div className="space-x-5  text-sm uppercase pt-4 sm:pt-0">
           {topNavItems.map((item) => {
             return (
-              <NavLink key={item.title} to={`/${item.value}`}>
+              <NavLink
+                className="font-medium text-gray-700 hover:text-[#07B3E9] transition-all duration-300"
+                key={item.title}
+                to={`/${item.value}`}
+              >
                 {item.title}
               </NavLink>
             );

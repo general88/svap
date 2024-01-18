@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import validator from "validator";
 import axios from "axios";
 import { Select, Space } from "antd";
-import { options, mergedUnits } from "../../utils/unitsSelect";
+import { mergedUnits } from "../../utils/unitsSelect";
 import FileUploadInput from "./FileUploadInput";
 import { useSelector } from "react-redux";
 import { baseUrlServer } from "../../utils/helper";
@@ -21,18 +21,9 @@ const UploadPanel = () => {
     uploadedBy: profile.radioRoomEmail || profile.nafNum,
   });
   const [errorText, setErrorText] = React.useState(null);
+  const [loading, setLoading] = React.useState(false);
 
   const navigate = useNavigate();
-
-  // const success = () => {
-  //   messageApi.open({
-  //     type: "success",
-  //     content: "This is a success message",
-  //   });
-  // };
-
-  //fxn to handle user input
-
   const [fileList, setFileList] = useState([]);
 
   const errorDisplay = (text) => {
@@ -94,11 +85,11 @@ const UploadPanel = () => {
       return formData.append("files", file);
     });
 
-    console.log(fileList);
+    setLoading(true);
 
     try {
       const res = await axios.post(
-        `${baseUrlServer}/api/v1/files/upload`,
+        `${baseUrlServer}/api/v1/document/upload`,
         formData,
         {
           headers: {
@@ -108,9 +99,12 @@ const UploadPanel = () => {
         }
       );
 
-      navigate(`/${formDataInfo.unit}`);
+      // console.log(formDataInfo.unit.split(" ").join("-"));
+      navigate(`/${formDataInfo.unit.split(" ").join("-")}`);
     } catch (error) {
       console.log(error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -121,6 +115,7 @@ const UploadPanel = () => {
         <h1>File Upload Page</h1>
 
         <Select
+          disabled={loading}
           showSearch
           status={errorText === "unit" && "error"}
           size="large"
@@ -165,6 +160,7 @@ const UploadPanel = () => {
         </Select>
         <div>
           <Input
+            disabled={loading}
             status={errorText === "SRF" && "error"}
             onChange={(e) =>
               setFormDataInfo((preValue) => {
@@ -190,6 +186,7 @@ const UploadPanel = () => {
 
         <Space.Compact style={{ width: "100%" }} size="large">
           <Input
+            disabled={loading}
             style={{
               width: "20%",
             }}
@@ -197,6 +194,7 @@ const UploadPanel = () => {
             status={errorText === "DTG" && "error"}
           />
           <Input
+            disabled={loading}
             status={errorText === "DTG" && "error"}
             onChange={(e) =>
               setFormDataInfo((preValue) => {
@@ -206,7 +204,7 @@ const UploadPanel = () => {
                   }
                   return {
                     ...preValue,
-                    DTG: `DTG${e.target.value.trim()}`,
+                    DTG: `DTG ${e.target.value.trim()}`,
                   };
                 }
               })
@@ -220,6 +218,7 @@ const UploadPanel = () => {
         </Space.Compact>
 
         <Input
+          disabled={loading}
           onChange={(e) =>
             setFormDataInfo((preValue) => {
               {
@@ -246,7 +245,8 @@ const UploadPanel = () => {
           <FileUploadInput fileList={fileList} setFileList={setFileList} />
         </div>
         <Button
-          // disabled
+          disabled={loading}
+          loading={loading}
           onClick={handleFileUpload}
           block
           type="primary"

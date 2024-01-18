@@ -27,7 +27,7 @@ const NestedNavigation = ({ navItems }) => {
   ];
 
   const handleNavigation = (e) => {
-    navigate(`/${e.key}`);
+    navigate(`/${e.key.toUpperCase()}`);
   };
   return (
     <Menu
