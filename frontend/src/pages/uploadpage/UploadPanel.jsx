@@ -1,6 +1,5 @@
-import { UserOutlined, KeyOutlined } from "@ant-design/icons";
 import { Input, Button, message } from "antd";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import validator from "validator";
 import axios from "axios";
 import { Select, Space } from "antd";
@@ -95,7 +94,7 @@ const UploadPanel = () => {
           headers: {
             Authorization: `Bearer ${profile.token}`,
             // "Content-Type": "multipart/form-data", // Make sure to set Content-Type
-            // "Access-Control-Allow-Headers": "Content-Type",
+            "Access-Control-Allow-Headers": "Content-Type",
           },
         }
       );
@@ -115,8 +114,8 @@ const UploadPanel = () => {
       //     console.log("fail");
       //   }
       // }),
-        // console.log(formDataInfo.unit.split(" ").join("-"));
-        navigate(`/${formDataInfo.unit.split(" ").join("-")}`);
+      // console.log(formDataInfo.unit.split(" ").join("-"));
+      navigate(`/${formDataInfo.unit.split(" ").join("-")}`);
     } catch (error) {
       console.log(error);
     } finally {
