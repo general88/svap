@@ -57,23 +57,7 @@ app.use(
   .app.use(express.json());
 // Middleware to parse urlencoded form data
 app.use(express.urlencoded({ extended: true }));
-app.use(
-  helmet({
-    contentSecurityPolicy: false,
-    xDownloadOptions: false,
-    xContentTypeOptions: false,
-  })
-);
-app.all("*", function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Credentials", "true");
-  res.header("Access-Control-Allow-Methods", "PUT, GET, POST, DELETE, OPTIONS");
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept, Authorization"
-  );
-  next();
-});
+
 //
 // app.use(function (req, res, next) {
 //   // Specify the allowed origins
