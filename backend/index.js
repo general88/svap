@@ -52,7 +52,10 @@ const documentRoutes = require("./route/documentRoute");
 //   res.setHeader("Access-Control-Allow-Credentials", true);
 //   next();
 // });
-
+//
+app.use(express.json());
+// Middleware to parse urlencoded form data
+app.use(express.urlencoded({ extended: true }));
 //
 app.use(function (req, res, next) {
   // Specify the allowed origins
@@ -86,11 +89,6 @@ app.use(function (req, res, next) {
 });
 
 /****** */
-
-//
-app.use(express.json());
-// Middleware to parse urlencoded form data
-app.use(express.urlencoded({ extended: true }));
 
 // routes usage
 app.use("/api/v1/auth", authRoutes);
