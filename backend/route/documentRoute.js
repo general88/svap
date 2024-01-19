@@ -8,7 +8,20 @@ const {
   uploadDocument,
   getUnitDocuments,
 } = require("../controller/documentController");
-const upload = multer({ dest: "uploads/" });
+// Multer configuration
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    // Set the destination folder for uploaded files
+    cb(null, "uploads/");
+  },
+  filename: function (req, file, cb) {
+    // Set the filename for uploaded files
+    cb(null, Date.now() + "-" + file.originalname);
+  },
+});
+
+const upload = multer({ storage: storage, dest: "uploads/" });
+// const upload = multer({ dest: "uploads/" });
 
 // Serve uploaded files
 router.post(
