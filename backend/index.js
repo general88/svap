@@ -29,6 +29,8 @@ const documentRoutes = require("./route/documentRoute");
 //   })
 // );
 
+app.use(cors());
+
 const allowedOrigins = [
   "https://svap-v2es.vercel.app",
   "http://localhost:5173",
