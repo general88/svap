@@ -29,23 +29,12 @@ const documentRoutes = require("./route/documentRoute");
 //   })
 // );
 
-// const corsOrigin = {
-//   origin: ["https://svap-v2es.vercel.app", "http://localhost:5173"], //or whatever port your frontend is using
-//   credentials: true,
-//   optionSuccessStatus: 200,
-// };
-// app.use(cors(corsOrigin));
+app.use(cors());
 
-const allowedOrigins = {
-  origin: ["https://svap-v2es.vercel.app", "http://localhost:5173"], //or whatever port your frontend is using
-  credentials: true,
-  optionSuccessStatus: 200,
-};
-
-// const allowedOrigins = [
-//   "https://svap-v2es.vercel.app",
-//   "http://localhost:5173",
-// ];
+const allowedOrigins = [
+  "https://svap-v2es.vercel.app",
+  "http://localhost:5173",
+];
 // middleware
 app.use(function (req, res, next) {
   const origin = req.headers.origin;
@@ -65,6 +54,7 @@ app.use(function (req, res, next) {
   next();
 });
 
+app.use(cors(allowedOrigins));
 app.use(express.json());
 // Middleware to parse urlencoded form data
 app.use(express.urlencoded({ extended: true }));
