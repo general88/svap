@@ -6,7 +6,7 @@ const cors = require("cors");
 // const path = require("path");
 const path = require("node:path");
 const app = express();
-const PORT = process.env.port || 5000;
+const PORT = process.env.PORT || 5000;
 
 // custom middleware
 const { routeNotFoundMiddleware } = require("./middleware/routeNotFound");
@@ -23,12 +23,10 @@ const authRoutes = require("./route/authRoute");
 const documentRoutes = require("./route/documentRoute");
 // middlewares
 
-
 // const allowedOrigins = [
 //   "https://svap-v2es.vercel.app",
 //   "https://localhost:5173",
 // ];
-
 
 app.use(express.json());
 // Middleware to parse urlencoded form data
@@ -66,10 +64,6 @@ app.use(function (req, res, next) {
 });
 
 /****** */
-
-
-
-
 
 // // middleware
 // app.use(function (req, res, next) {
