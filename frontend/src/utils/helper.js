@@ -1,2 +1,2 @@
-export const baseUrlServer = "https://dull-gold-coati-coat.cyclic.app";
+export const baseUrlServer = "https://drab-ruby-caridea-fez.cyclic.app";
 // "http://localhost:5000";
