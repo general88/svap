@@ -30,8 +30,6 @@ app.use(
     credentials: true,
   })
 );
-app
-  .use(helmet.crossOriginResourcePolicy())
   // const allowedOrigins = [
   //   "https://svap-v2es.vercel.app",
   //   "https://localhost:5173",
@@ -63,6 +61,7 @@ app.use(
   helmet({
     contentSecurityPolicy: false,
     xDownloadOptions: false,
+    xContentTypeOptions: false,
   })
 );
 app.all("*", function (req, res, next) {
