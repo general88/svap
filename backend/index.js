@@ -22,7 +22,12 @@ const { connectCloudinary } = require("./config/cloudinaryConnect");
 const authRoutes = require("./route/authRoute");
 const documentRoutes = require("./route/documentRoute");
 // middlewares
-app.use(cors());
+app.use(
+  cors({
+    origin: ["https://svap-v2es.vercel.app", "https://localhost:5173"],
+    credentials: true,
+  })
+);
 app.use(express.json());
 // Middleware to parse urlencoded form data
 app.use(express.urlencoded({ extended: true }));
