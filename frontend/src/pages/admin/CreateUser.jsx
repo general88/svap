@@ -78,7 +78,7 @@ const CreateUser = () => {
     try {
       setLoading(true);
       const response = await axios.post(
-        "http://localhost:5000/api/v1/auth/register",
+        `${baseUrlServer}/api/v1/auth/register`,
         formData,
         {
           headers: {

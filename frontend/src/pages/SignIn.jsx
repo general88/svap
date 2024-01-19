@@ -6,6 +6,7 @@ import axios from "axios";
 import { loginUser } from "../redux/features/user/userSlice";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
+import { baseUrlServer } from "../utils/helper";
 
 export const SignIn = () => {
   //fxn to handle user input
@@ -45,7 +46,7 @@ export const SignIn = () => {
     try {
       setLoading(true);
       const response = await axios.post(
-        "http://localhost:5000/api/v1/auth/sign-in",
+        `${baseUrlServer}/api/v1/auth/sign-in`,
         formData
       );
       dispatch(loginUser(response.data));

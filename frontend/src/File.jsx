@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { baseUrlServer } from "./utils/helper";
 
 const File = () => {
   const [file, setFile] = useState(null);
@@ -8,7 +9,7 @@ const File = () => {
   useEffect(() => {
     // Fetch the list of uploaded files
     axios
-      .get("http://localhost:5000/files")
+      .get(`${baseUrlServer}/files`)
       .then((response) => setFiles(response.data.files))
       .catch((error) => console.error("Error fetching files:", error));
   }, []);
@@ -22,13 +23,13 @@ const File = () => {
     formData.append("file", file);
 
     axios
-      .post("http://localhost:5000/upload", formData)
+      .post(`${baseUrlServer}/upload`, formData)
       .then((response) => {
         console.log(response.data.message);
         setFile(null);
         // Refresh the list of files
         axios
-          .get("http://localhost:5000/files")
+          .get(`${baseUrlServer}/files`)
           .then((response) => setFiles(response.data.files))
           .catch((error) => console.error("Error fetching files:", error));
       })
@@ -36,7 +37,7 @@ const File = () => {
   };
 
   const handleFileDownload = (filename) => {
-    window.open(`http://localhost:5000/download/${filename}`, "_blank");
+    window.open(`${baseUrlServer}/download/${filename}`, "_blank");
   };
 
   return (

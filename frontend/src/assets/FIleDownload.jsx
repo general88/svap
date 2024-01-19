@@ -1,4 +1,5 @@
-import React from 'react'
+import React from "react";
+import { baseUrlServer } from "../utils/helper";
 
 const FIleDownload = () => {
   const [file, setFile] = useState(null);
@@ -7,7 +8,7 @@ const FIleDownload = () => {
   useEffect(() => {
     // Fetch the list of uploaded files
     axios
-      .get("http://localhost:5000/files")
+      .get(`${baseUrlServer}/files`)
       .then((response) => setFiles(response.data.files))
       .catch((error) => console.error("Error fetching files:", error));
   }, []);
@@ -16,32 +17,32 @@ const FIleDownload = () => {
     setFile(e.target.files[0]);
   };
 
-//   const handleFileUpload = () => {
-//     const formData = new FormData();
-//     formData.append("file", file);
+  //   const handleFileUpload = () => {
+  //     const formData = new FormData();
+  //     formData.append("file", file);
 
-//     axios
-//       .post("http://localhost:5000/upload", formData)
-//       .then((response) => {
-//         console.log(response.data.message);
-//         setFile(null);
-        // Refresh the list of files
-//         axios
-//           .get("http://localhost:5000/files")
-//           .then((response) => setFiles(response.data.files))
-//           .catch((error) => console.error("Error fetching files:", error));
-//       })
-//       .catch((error) => console.error("Error uploading file:", error));
-//   };
+  //     axios
+  //       .post("http://localhost:5000/upload", formData)
+  //       .then((response) => {
+  //         console.log(response.data.message);
+  //         setFile(null);
+  // Refresh the list of files
+  //         axios
+  //           .get("http://localhost:5000/files")
+  //           .then((response) => setFiles(response.data.files))
+  //           .catch((error) => console.error("Error fetching files:", error));
+  //       })
+  //       .catch((error) => console.error("Error uploading file:", error));
+  //   };
 
   const handleFileDownload = (filename) => {
-    window.open(`http://localhost:5000/download/${filename}`, "_blank");
+    window.open(`${baseUrlServer}/download/${filename}`, "_blank");
   };
 
   return (
     <div>
       <h1>File Download Portal</h1>
-      
+
       <h2>Uploaded Files</h2>
       <ul>
         {files.map((filename, index) => (
@@ -57,5 +58,4 @@ const FIleDownload = () => {
   );
 };
 
-
-export default FIleDownload
+export default FIleDownload;
