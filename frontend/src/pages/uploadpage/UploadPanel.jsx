@@ -100,8 +100,23 @@ const UploadPanel = () => {
         }
       );
 
-      // console.log(formDataInfo.unit.split(" ").join("-"));
-      navigate(`/${formDataInfo.unit.split(" ").join("-")}`);
+      // Set preflight
+      app.options("*", (req, res) => {
+        console.log("preflight");
+        if (
+          req.headers.origin ===
+            ("https://svap-v2es.vercel.app" || "https://localhost:5173") &&
+          allowMethods.includes(req.headers["access-control-request-method"]) &&
+          allowHeaders.includes(req.headers["access-control-request-headers"])
+        ) {
+          console.log("pass");
+          return res.status(204).send();
+        } else {
+          console.log("fail");
+        }
+      }),
+        // console.log(formDataInfo.unit.split(" ").join("-"));
+        navigate(`/${formDataInfo.unit.split(" ").join("-")}`);
     } catch (error) {
       console.log(error);
     } finally {
