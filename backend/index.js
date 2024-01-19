@@ -29,30 +29,35 @@ const documentRoutes = require("./route/documentRoute");
 //   })
 // );
 
-app.use(cors());
+const corsOrigin = {
+  origin: ["https://svap-v2es.vercel.app", "http://localhost:5173"], //or whatever port your frontend is using
+  credentials: true,
+  optionSuccessStatus: 200,
+};
+app.use(cors(corsOrigin));
 
-const allowedOrigins = [
-  "https://svap-v2es.vercel.app",
-  "http://localhost:5173",
-];
-// middleware
-app.use(function (req, res, next) {
-  const origin = req.headers.origin;
+// const allowedOrigins = [
+//   "https://svap-v2es.vercel.app",
+//   "http://localhost:5173",
+// ];
+// // middleware
+// app.use(function (req, res, next) {
+//   const origin = req.headers.origin;
 
-  if (allowedOrigins.includes(origin)) {
-    res.setHeader("Access-Control-Allow-Origin", origin);
-  }
-  res.setHeader(
-    "Access-Control-Allow-Methods",
-    "GET, POST, OPTIONS, PUT, PATCH, DELETE"
-  );
-  res.setHeader(
-    "Access-Control-Allow-Headers",
-    "X-Requested-With,Content-Type, authorization"
-  );
-  res.setHeader("Access-Control-Allow-Credentials", true);
-  next();
-});
+//   if (allowedOrigins.includes(origin)) {
+//     res.setHeader("Access-Control-Allow-Origin", origin);
+//   }
+//   res.setHeader(
+//     "Access-Control-Allow-Methods",
+//     "GET, POST, OPTIONS, PUT, PATCH, DELETE"
+//   );
+//   res.setHeader(
+//     "Access-Control-Allow-Headers",
+//     "X-Requested-With,Content-Type, authorization"
+//   );
+//   res.setHeader("Access-Control-Allow-Credentials", true);
+//   next();
+// });
 
 app.use(express.json());
 // Middleware to parse urlencoded form data
