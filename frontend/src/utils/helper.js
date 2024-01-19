@@ -1,2 +1,2 @@
 export const baseUrlServer = "https://drab-ruby-caridea-fez.cyclic.app";
-// "http://localhost:5000";
+// export const baseUrlServer = "http://localhost:5000";
