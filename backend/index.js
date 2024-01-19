@@ -47,7 +47,7 @@ app.use(function (req, res, next) {
     "GET, POST, OPTIONS, PUT, PATCH, DELETE"
   );
   res.setHeader(
-    "Access-Control-Allow-Headers: Content-Type",
+    "Access-Control-Allow-Headers",
     "X-Requested-With,Content-Type, authorization"
   );
   res.setHeader("Access-Control-Allow-Credentials", true);
