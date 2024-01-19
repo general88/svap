@@ -22,13 +22,13 @@ const { connectCloudinary } = require("./config/cloudinaryConnect");
 const authRoutes = require("./route/authRoute");
 const documentRoutes = require("./route/documentRoute");
 // middlewares
-// app.use(
-//   cors({
-//     origin: ["https://svap-v2es.vercel.app", "https://localhost:5173"],
-//     credentials: true,
-//   })
-// );
-
+app.use(
+  cors({
+    origin: [process.env.CLIENT_URL_REMOTE, "https://localhost:5173"],
+    methods: ["POST", "GET", "DELETE", "PUT", "PATCH", "OPTIONS"],
+    credentials: true,
+  })
+);
 // const allowedOrigins = [
 //   "https://svap-v2es.vercel.app",
 //   "https://localhost:5173",
@@ -57,36 +57,36 @@ app.use(express.json());
 // Middleware to parse urlencoded form data
 app.use(express.urlencoded({ extended: true }));
 //
-app.use(function (req, res, next) {
-  // Specify the allowed origins
-  res.setHeader("Access-Control-Allow-Origin", [
-    "https://svap-v2es.vercel.app",
-    "https://localhost:5173",
-  ]);
+// app.use(function (req, res, next) {
+//   // Specify the allowed origins
+//   res.setHeader("Access-Control-Allow-Origin", [
+//     "https://svap-v2es.vercel.app",
+//     "https://localhost:5173",
+//   ]);
 
-  // Specify the allowed methods
-  res.setHeader(
-    "Access-Control-Allow-Methods",
-    "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS,CONNECT,TRACE"
-  );
+// Specify the allowed methods
+//   res.setHeader(
+//     "Access-Control-Allow-Methods",
+//     "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS,CONNECT,TRACE"
+//   );
 
-  // Specify the allowed headers
-  res.setHeader(
-    "Access-Control-Allow-Headers",
-    "Content-Type, Authorization, X-Content-Type-Options, Accept, X-Requested-With, Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
-  );
+//   // Specify the allowed headers
+//   res.setHeader(
+//     "Access-Control-Allow-Headers",
+//     "Content-Type, Authorization, X-Content-Type-Options, Accept, X-Requested-With, Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+//   );
 
-  // Allow credentials
-  res.setHeader("Access-Control-Allow-Credentials", true);
+//   // Allow credentials
+//   res.setHeader("Access-Control-Allow-Credentials", true);
 
-  // Handle preflight requests
-  if (req.method === "OPTIONS") {
-    return res.status(200).end();
-  }
+//   // Handle preflight requests
+//   if (req.method === "OPTIONS") {
+//     return res.status(200).end();
+//   }
 
-  // Pass control to the next middleware
-  next();
-});
+//   // Pass control to the next middleware
+//   next();
+// });
 
 /****** */
 
