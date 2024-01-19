@@ -94,7 +94,7 @@ const UploadPanel = () => {
         {
           headers: {
             Authorization: `Bearer ${profile.token}`,
-            "content-type": "multipart/form-data", // Make sure to set Content-Type
+            "Content-Type": "multipart/form-data", // Make sure to set Content-Type
           },
         }
       );
