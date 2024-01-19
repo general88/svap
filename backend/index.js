@@ -31,7 +31,7 @@ const documentRoutes = require("./route/documentRoute");
 
 const allowedOrigins = [
   "https://svap-v2es.vercel.app",
-  "https://localhost:5173",
+  "http://localhost:5173",
 ];
 // middleware
 app.use(function (req, res, next) {
