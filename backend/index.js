@@ -29,32 +29,48 @@ const documentRoutes = require("./route/documentRoute");
 //   })
 // );
 
-app.use(cors());
+// const allowedOrigins = [
+//   "https://svap-v2es.vercel.app",
+//   "https://localhost:5173",
+// ];
 
-const allowedOrigins = [
-  "https://svap-v2es.vercel.app",
-  "http://localhost:5173",
-];
-// middleware
+// // middleware
+// app.use(function (req, res, next) {
+//   const origin = req.headers.origin;
+
+//   if (allowedOrigins.includes(origin)) {
+//     res.setHeader("Access-Control-Allow-Origin", origin);
+//   }
+//   res.setHeader(
+//     "Access-Control-Allow-Methods",
+//     "GET, POST, OPTIONS, PUT, PATCH, DELETE"
+//   );
+//   res.setHeader(
+//     "Access-Control-Allow-Headers",
+//     "X-Requested-With,content-type, authorization"
+//   );
+//   res.setHeader("Access-Control-Allow-Credentials", true);
+//   next();
+// });
+
 app.use(function (req, res, next) {
-  const origin = req.headers.origin;
+  res.setHeader("Access-Control-Allow-Origin", [
+    "https://svap-v2es.vercel.app",
+    "https://localhost:5173",
+  ]);
 
-  if (allowedOrigins.includes(origin)) {
-    res.setHeader("Access-Control-Allow-Origin", origin);
-  }
   res.setHeader(
     "Access-Control-Allow-Methods",
-    "GET, POST, OPTIONS, PUT, PATCH, DELETE"
+    "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS,CONNECT,TRACE"
   );
   res.setHeader(
     "Access-Control-Allow-Headers",
-    "X-Requested-With,content-type, authorization"
+    "Content-Type, Authorization, X-Content-Type-Options, Accept, X-Requested-With, Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
   );
   res.setHeader("Access-Control-Allow-Credentials", true);
   next();
 });
 
-app.use(cors(allowedOrigins));
 app.use(express.json());
 // Middleware to parse urlencoded form data
 app.use(express.urlencoded({ extended: true }));
